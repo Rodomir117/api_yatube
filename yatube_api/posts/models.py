@@ -1,13 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from posts.constants import TEXT_LEGHT, TEXT_PREVIEW_ADMIN
+from posts.constants import TEXT_LENGTH, TEXT_PREVIEW_ADMIN
 
 User = get_user_model()
 
 
 class Group(models.Model):
-    title = models.CharField('Заголовок', max_length=TEXT_LEGHT)
+    title = models.CharField('Заголовок', max_length=TEXT_LENGTH)
     slug = models.SlugField('Уникальный идентификатор', unique=True)
     description = models.TextField('Описание')
 
@@ -16,7 +16,7 @@ class Group(models.Model):
         verbose_name_plural = 'Группы'
 
     def __str__(self):
-        return self.title[:TEXT_PREVIEW_ADMIN]
+        return self.title
 
 
 class Post(models.Model):
@@ -65,4 +65,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return (f'{self.text[:TEXT_PREVIEW_ADMIN]}'
-                f'от {self.author}')
+                f'от {self.author[:TEXT_PREVIEW_ADMIN]}')

@@ -8,7 +8,7 @@ from posts.models import Comment, Group, Post
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().select_related('author')
+    queryset = Post.objects.select_related('author')
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
 
